@@ -153,11 +153,16 @@ extern int vrouter_dbg;
 #define OS_LOG_ERR LOG_ERR
 #define OS_LOG_DEBUG LOG_DEBUG
 
+#ifndef _NTKERNEL
+
 #define os_malloc(size)                  malloc(size)
 #define os_zalloc(size)                  calloc(1, size)
 #define os_realloc(ptr, size)            realloc(ptr, size)
 #define os_free(ptr)                     free(ptr)
 #define os_log(level, format, ...)       winsyslog(level format, __VA_ARGS__)  //only for now
+
+#endif
+
 #endif /* __KERNEL__ */
 
 typedef unsigned char uuid_t[16];
